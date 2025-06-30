@@ -1,0 +1,7 @@
+authx==1.4.3
+fastapi==0.115.13
+httpx==0.28.1
+pydantic==2.11.7
+pytest==8.4.1
+SQLAlchemy==2.0.41
+uvicorn==0.34.3

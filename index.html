@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Библиотека книг</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Моя библиотека</h1>
+    <div id="books"></div>
+
+    <!-- JavaScript -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const url = 'http://127.0.0.1:8000/books';
+
+            fetch(url)
+                .then(response => response.json())  // Преобразуем ответ в JSON
+                .then(data => displayBooks(data))
+                .catch(error => console.error('Ошибка:', error));
+        });
+
+        function displayBooks(books) {
+            const booksDiv = document.querySelector('#books');
+            const ulElement = document.createElement('ul');
+
+            books.forEach((book) => {
+                const liElement = document.createElement('li');
+                liElement.textContent = `${book.id} ${book.title} (${book.author})`;
+                ulElement.appendChild(liElement);
+            });
+
+            booksDiv.appendChild(ulElement);
+        }
+    </script>
+</body>
+</html>
